@@ -1,0 +1,19 @@
+<%= form_for @project do |f| %>
+  <% if @project.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @project.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+  <p>
+    <%= f.label :"#{t(:name)}" %><br>
+    <%= f.text_field :name %>
+  </p>
+ 
+  <p>
+    <%= f.submit  :class => "btn btn-primary" %>
+  </p>
+<% end %>

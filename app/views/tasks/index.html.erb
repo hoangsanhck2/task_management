@@ -1,0 +1,54 @@
+<div class="container">
+    <%= render 'language' %>
+    <h1 class="heading"><%=t(:manage_task)%></h1>
+     <%= form_for :listTask , url: { action: 'destroy_all' }, html: { method: 'delete' } do |f| %>
+    <table class="table table-striped" >
+    <tr>
+        <th>#</th>
+        <th><%=t(:name)%></th>
+        <th><%=t(:priority) %></th>
+        <th><%=t(:name_project) %></th>
+        <th><%=t(:start_date) %></th>
+        <th><%=t(:end_date) %></th>
+        <th><%=t(:status) %></th>
+        <th><%=t(:option)%></th>
+    </tr>
+    
+    <% @tasks.each do |task| %>
+        <tr>
+            <td class="table-icon">
+              <%= f.check_box :chk,{:multiple => true}, task.id, false %>
+            </td>
+            <td><%= task.name %></td>
+            <td><%= case task.priority 
+                    when 1
+                        "Important and do now"
+                    when 2
+                        "Important and not urgent"
+                    when 3
+                        "Not Important and urgent"
+                    else
+                        "Not Important and not urgent"
+                    end
+            %></td>
+            <td><%= task.project.name %></td>
+            <td><%= task.start_date %></td>
+            <td><%= task.end_date %></td>
+            <td><%= case task.status
+                    when 0
+                        "to do"
+                    when 1
+                        "doing"
+                    else
+                        "done"
+                    end  %></td>
+            <td><%= link_to "#{t(:edit)}", edit_task_path(task) %></td>
+        </tr>
+    <% end %>
+    </table>
+    
+    <%= link_to  "#{t(:new_task)}", new_task_path , :class => "btn btn-primary"  %>
+    <%= f.submit "#{t(:deleted_selected)}" ,  :onclick=>"myconfirm()", :class =>'btn btn-danger' %></br><br>
+    <%= link_to "#{t(:back_page_project)}" , projects_path %>
+<%end%>
+</div>

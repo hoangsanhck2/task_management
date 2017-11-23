@@ -1,0 +1,29 @@
+<div class="container">
+  <%= render 'language' %>
+  <h1><%=t(:manage_project)%></h1>
+  <%= form_for :listProject , url: { action: 'destroy_all' }, html: { method: 'delete' } do |f| %>
+    <table class="table table-striped" >
+      <thead>
+        <tr>
+          <th>#</th>
+          <th><%=t(:name)%></th>
+          <th><%=t(:option)%></th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+          <tr>
+            <td class="table-icon">
+              <%= f.check_box :chk,{:multiple => true}, project.id, false %>
+            </td>
+            <td><%= project.name  %></td>
+            <td><%= link_to "#{t(:edit)}", edit_project_path(project) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= link_to  "#{t(:new_project)}" , new_project_path , :class => "btn btn-primary"  %>
+    <%= f.submit "#{t(:deleted_selected)}",  data: { confirm: 'Are you sure?'}, :class =>'btn btn-danger' %>
+    <%= link_to  "#{t(:list_task)}" , tasks_path , :class => "btn btn-primary"  %>
+<%end%>
+</div>

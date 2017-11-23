@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyText
+  type_task: 1
+  start_date: 2017-02-17 15:15:54
+  end_date: 2017-02-17 15:15:54
+  status: 1
+  project: one
+
+two:
+  name: MyText
+  type_task: 1
+  start_date: 2017-02-17 15:15:54
+  end_date: 2017-02-17 15:15:54
+  status: 1
+  project: two

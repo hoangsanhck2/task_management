@@ -1,0 +1,31 @@
+<div class="container">
+    <h1>Listing tasks</h1>
+    <%= form_for :listProject , url: { action: 'destroy_all' }, html: { method: 'delete' } do |f| %>
+    <table class="table table-striped" >
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Project</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Status</th>
+        <th>Option</th>
+    </tr>
+    
+    <% @listProjectTask.each do |task| %>
+        <tr>
+            <td><%= task.name %></td>
+            <td><%= task.type_task %></td>
+            <td><%= task.project.name %></td>
+            <td><%= task.start_date.strftime("%Y-%m-%d") %></td>
+            <td><%= task.end_date.strftime("%Y-%m-%d") %></td>
+            <td><%= task.status %></td>
+            <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        </tr>
+    <% end %>
+    </table>
+    
+    <%= link_to  "New project", new_project_path , :class => "btn btn-primary"  %>
+    <%= f.submit  "Deleted selected",  data: { confirm: 'Are you sure?'}, :class =>'btn btn-danger' %>
+    <%end%>
+</div>
